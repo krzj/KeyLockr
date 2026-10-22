@@ -8,24 +8,18 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup .NET 8 SDK
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v5
         with:
           dotnet-version: '8.0.x'
 
-      - name: Restore dependencies
-        run: dotnet restore -r win-x64
-
-      - name: Build solution
-        run: dotnet build --no-restore -c Release
-
       - name: Publish Tray App
-        run: dotnet publish src/KeyLockr.Tray -c Release -r win-x64 --self-contained false --no-build
+        run: dotnet publish src/KeyLockr.Tray -c Release -r win-x64 --self-contained false
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: KeyLockr-Tray-win-x64
           path: '**/bin/Release/**/publish/**/*.exe'
