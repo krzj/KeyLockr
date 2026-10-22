@@ -16,7 +16,7 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore -r win-x64
 
       - name: Build solution
         run: dotnet build --no-restore -c Release
